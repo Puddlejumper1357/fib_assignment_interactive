@@ -69,26 +69,14 @@ var fibSlider=function(me){
 
 
 
-
-
-/*
-makeDiv('blue', 'fib');
-fib(11,document.querySelector('.blue'));
-
-
-
-var makeDiv=function(cls,id){
-	var div=document.createElement('div');
-	div.setAttribute('class', cls+ ' shadowed stuff-box');
-	div.setAttribute('id',id);
-	document.body.appendChild(div);
-}
-
-
 function myPellfunc(n){
 var value;
+
 var div=document.createElement('div');
 div.setAttribute("class", "pell");
+
+n=parseInt(n);
+
 if(n<2){
 	if(n===0){
 		value=0;
@@ -120,6 +108,48 @@ else{
 return{'value': value, 'html':div};
 
 }
+
+
+var pell=function (n, node){
+	var pellTree=node.querySelector('div.pell');
+	if(pellTree)
+	{
+		node.removeChild(pellTree);
+	}
+	var tree= myPellfunc(n)
+	node.appendChild(tree.html);
+	node.setAttribute("id", "pell");
+}
+
+var pellButton=function(me){
+	var form=me.parentNode;
+	var slider=form.querySelector('input');
+	var value=slider.value;
+	pell(value, form.parentNode);
+}
+
+var pellSlider=function(me){
+	var form=me.parentNode;
+	var button=form.querySelector('button');
+	button.textContent='Pell('+me.value+')';
+}
+
+
+/*
+makeDiv('blue', 'fib');
+fib(11,document.querySelector('.blue'));
+
+
+
+var makeDiv=function(cls,id){
+	var div=document.createElement('div');
+	div.setAttribute('class', cls+ ' shadowed stuff-box');
+	div.setAttribute('id',id);
+	document.body.appendChild(div);
+}
+
+
+
 var pell=function(n,node){
 	var tree=myPellfunc(n);
 	node.appendChild(tree.html);
