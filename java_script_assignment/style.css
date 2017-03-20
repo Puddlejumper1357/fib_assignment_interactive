@@ -18,7 +18,7 @@
 }
 #pell{
 	display: inline-block;
-	width: 20000px;
+	width: auto;
 }
 .pell{
     background-color: rgba(0,0,200,0.1);
