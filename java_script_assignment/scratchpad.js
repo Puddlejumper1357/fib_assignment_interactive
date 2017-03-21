@@ -135,33 +135,14 @@ var pellSlider=function(me){
 }
 
 
-/*
-makeDiv('blue', 'fib');
-fib(11,document.querySelector('.blue'));
 
-
-
-var makeDiv=function(cls,id){
-	var div=document.createElement('div');
-	div.setAttribute('class', cls+ ' shadowed stuff-box');
-	div.setAttribute('id',id);
-	document.body.appendChild(div);
-}
-
-
-
-var pell=function(n,node){
-	var tree=myPellfunc(n);
-	node.appendChild(tree.html);
-	node.setAttribute("id", "pell");
-}
-
-makeDiv('yellow','pell');
-pell(11, document.querySelector('.yellow'));
 function myTribfunc(n){
     var value;
     var div=document.createElement('div');
     div.setAttribute("class", "trib");
+    
+    n=parseInt(n);
+    
     if(n<3){
         if(n===0 || n===1){
             value=0;
@@ -197,6 +178,77 @@ function myTribfunc(n){
     }
     return{'value': value, 'html':div}
 }
+var trib=function (n, node){
+	var tribTree=node.querySelector('div.trib');
+	if(tribTree)
+	{
+		node.removeChild(tribTree);
+	}
+	var tree= myTribfunc(n)
+	node.appendChild(tree.html);
+	node.setAttribute("id", "trib");
+}
+
+var tribButton=function(me){
+	var form=me.parentNode;
+	var slider=form.querySelector('input');
+	var value=slider.value;
+	trib(value, form.parentNode);
+}
+
+var tribSlider=function(me){
+	var form=me.parentNode;
+	var button=form.querySelector('button');
+	button.textContent='Trib('+me.value+')';
+}
+
+
+
+var makeDiv=function(cls,id){
+	var div=document.createElement('div');
+	div.setAttribute('class', cls+ ' shadowed stuff-box');
+	div.setAttribute('id',id);
+	document.body.appendChild(div);
+}
+
+
+
+var myDiv=document.createElement('div');
+myDiv.setAttribute("id", "pargraph");
+var para=document.createElement('p');
+para.textContent=("Here are some links to learn more: ");
+myDiv.appendChild(para);
+
+
+var MakeLink=function(wording, link){
+	var myLink=document.createElement('a');
+	myLink.setAttribute("href",link)
+	myLink.textContent=wording;
+
+var myList=document.createElement('ul');
+myList.appendChild(myLink);
+myDiv.appendChild(myList);
+
+
+
+//	myDiv.appendChild(myLink);
+
+}
+MakeLink('Fibonacci ',"https://oeis.org/A000045");
+MakeLink(' Pell ',"https://oeis.org/A000129");
+MakeLink(' Tribonacci',"https://oeis.org/A000073");
+
+
+
+
+makeDiv('green','paragraph');
+var element=document.getElementById("paragraph");
+element.appendChild(myDiv);
+
+/*
+
+
+
 
 var trib=function(n,node){
     var tree=myTribfunc(n);
